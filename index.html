@@ -1,34 +1,92 @@
-<style>
-.rainbowText {
-	-webkit-animation: rainbowT .5s linear infinite;
-	animation: rainbowT 2s linear infinite
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Zimek.wtf</title>
+<meta name="description" content="Zimek's website" />
+<meta content="text/html; charset=UTF-8" name="Content-Type" />
+<meta name="author" content="Zimek" />
+<meta content="article" property="og:type" />
+<meta content="Zimek.wtf" property="og:title" />
+<meta content="./src/logo2.png" property="og:image" />
+<meta property="og:image" content="https://zimek.wtf/src/logo2.png?v=4f32ecc8f43d">
+<meta name="og:description" content="Zimek's website" />
+<link rel="shortcut icon" type="image/png" href="./src/logo2.png" />
+<link href="./src/main.css" rel="stylesheet">
+<link href="./src/uikit.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,200,600" rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Titillium%20Web" rel="stylesheet">
+<script src="./src/jquery.js"></script>
+<script src="./src/uikit.js"></script>
+<script src="./src/uikit-icons.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
 
+<body unselectable="on" onselectstart="return false;" oncontextmenu="return false">
+  <div class="main">
 
-@keyframes rainbowT {
-	0%,
-	100% {
-		color: Crimson
-	}
-	20% {
-		color: orange
-	}
-	40% {
-		color: #ff0
-	}
-	60% {
-		color: lime
-	}
-	80% {
-		color: #2934ff
-	}
-}
-		body{
-background-color:gray;
-font-size:50px;
-}
-	
-	
-</style>
+  <div class="navbar" style="margin-top:-70px;">
+    <a href="https://zimek.wtf/">
+    <img class="nav-icon" src="./src/logo1.png">
+    </a>
+    <div class="navbar-socials">
+      <a class="nav-link" target="_blank" uk-tooltip="Discord" href="https://discord.gg/zMZ3Evr" style="color: rgb(114, 137, 218);"><i class="fab fa-discord"></i></a>
+    <!--  <a class="nav-link" target="_blank" uk-tooltip="Twitter" href="" style="color: rgb(29, 161, 242);"><i class="fab fa-twitter"></i></a> -->
+      <a class="nav-link" target="_blank" uk-tooltip="YouTube" href="https://www.youtube.com/channel/UCzQLS2sTAPAYH7qyj0FXP3w" style="color: rgb(255, 0, 0);"><i class="fab fa-youtube"></i></a>
+  <!--    <a class="nav-link" target="_blank" uk-tooltip="Facebook" href="" style="color: rgb(59, 89, 152);"><i class="fab fa-facebook"></i></a> -->
+    </div>
 
-<span class="rainbowText">Hello</span>
+    <div class="navbar-items">
+<!--
+      <a href="https://zimek.wtf/">
+        <div class="nav-item nav-item-active">
+         <div uk-icon="icon: home; ratio: 1.4;"></div> <div class="nav-item-text"><span>Home</span></div>
+       </div>
+      </a>
+
+      <a href="https://zimek.wtf/blog">
+        <div class="nav-item">
+         <div style="margin-top:3px;" uk-icon="icon: comments; ratio: 1.4;"></div> <div class="nav-item-text"><span>Blog</span></div>
+       </div>
+      </a>
+
+      <a href="https://zimek.wtf/contact">
+        <div class="nav-item">
+         <div style="margin-top:6px;" uk-icon="icon: mail; ratio: 1.4;"></div> <div class="nav-item-text"><span>Contact</span></div>
+       </div>
+      </a>
+-->
+    </div>
+  </div>
+
+    <div class="main-content">
+      <img class="main-logo" src="./src/logo.png"> <br>
+
+    </div>
+    <div class="footer" style="margin-bottom:-50px;">
+      <div class="footer-content">
+      <!--  <span class="footer-text">© Zimek ; All rights reserved.</span> -->
+    <!--    <span class="footer-text"><a href="./privacy">Privacy Policy</a></span> -->
+      <!--  <span class="footer-text">Website Design by Zimek</span> -->
+
+      </div>
+    </div>
+    <div class="main-video">
+      <div style="height:100%;width:100%;position:absolute"></div>
+      <iframe id="clips" width="100%" height="100%" src="https://www.youtube.com/embed/Q66-ANO0wXw?controls=0&hd=1&vq=hd1080&rel=0&autoplay=1&showinfo=0&loop=1&modestbranding=0&disablekb=1&mute=1&playlist=Q66-ANO0wXw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+<!-- Some animations -->
+  <script>
+  //  $(".main-background").css('transform', 'scale(1.15)')
+    $(".main-content").fadeIn(900)
+    $(".main-logo").css('transform', 'scale(1.1)')
+    $(".navbar").css('margin-top', '0px')
+    $(".footer").css('margin-bottom', '0px')
+    window.ondragstart = function() { return false; }
+  </script>
+
+</body>
