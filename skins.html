@@ -1,0 +1,23 @@
+<title>Skins Gallery</title>
+
+<script src="./src/jquery.js"></script>
+
+<style>
+html{
+  background-color:#010108;
+}
+</style>
+
+<script>
+
+  $.ajax({
+         url: "http://zimek.glitch.me/api/skins?auth=1zimekAPIx7..s;%3C%3C%3Es[[}[sade-23423asd3wWW]]]",
+         type: "GET",
+         success: function(data) {
+           data.forEach(function(skin){
+             $("body").append(`<img src="${skin}" width="256">`)
+           })
+          }
+      })
+
+</script>
