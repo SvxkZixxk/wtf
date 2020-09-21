@@ -12,10 +12,14 @@ html{
 <script>
 
   var password = "Your mom is skinny";
+
+  if(localStorage.password !== password){
   var x = prompt("Enter in the password "," ");
+  localStorage.password = x  
   if (x !== password) {
     window.location = "https://zimek.wtf/404.html";
   }
+}
 
   $.ajax({
          url: "https://zimek.glitch.me/api/skins?auth=Xzimek32sdju70r;.,;ppdp;l;le30sdKKs;l9883Ddssxx..LDlS;",
