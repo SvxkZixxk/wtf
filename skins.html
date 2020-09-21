@@ -5,6 +5,7 @@
 <style>
 html{
   background-color:#010108;
+  color:#d1d1d1;
 }
 </style>
 
@@ -20,6 +21,7 @@ html{
          url: "https://zimek.glitch.me/api/skins?auth=Xzimek32sdju70r;.,;ppdp;l;le30sdKKs;l9883Ddssxx..LDlS;",
          type: "GET",
          success: function(data) {
+           $("body").append(`Total skins: ${data.length}<br>`)
            data.forEach(function(skin){
              $("body").append(`<img src="${skin}" width="256" style="background-color:cyan;border-radius:200px;">`)
            })
