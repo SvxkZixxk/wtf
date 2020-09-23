@@ -15,7 +15,7 @@ html{
 
   if(localStorage.password !== password){
   var x = prompt("Enter in the password "," ");
-  localStorage.password = x  
+  localStorage.password = x
   if (x !== password) {
     window.location = "https://zimek.wtf/404.html";
   }
@@ -26,6 +26,30 @@ html{
          type: "GET",
          success: function(data) {
            $("body").append(`Total skins: ${data.length}<br>`)
+
+           if(location.search === '?random'){
+             function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+shuffle(data)
+           }
+
            data.forEach(function(skin){
              $("body").append(`<img src="${skin}" width="256" style="background-color:cyan;border-radius:200px;">`)
            })
