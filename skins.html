@@ -13,6 +13,8 @@ html{
 
   var password = "Your mom is skinny";
 
+window.totalSkins = 0
+
   if(localStorage.password !== password){
   var x = prompt("Enter in the password "," ");
   localStorage.password = x
@@ -21,11 +23,14 @@ html{
   }
 }
 
+$("body").append("<h1>Loading skins...")
+
   $.ajax({
          url: "https://zimek.glitch.me/api/skins?auth=Xzimek32sdju70r;.,;ppdp;l;le30sdKKs;l9883Ddssxx..LDlS;",
          type: "GET",
          success: function(data) {
-           $("body").append(`Total skins: ${data.length}<br>`)
+           $("body").empty()
+           $("body").append(`<span id="skins>Total skins: 0</span><br>`)
 
            if(location.search === '?random'){
              function shuffle(array) {
@@ -51,8 +56,16 @@ shuffle(data)
            }
 
            data.forEach(function(skin){
+             var tester=new Image();
+             tester.onload = function(){
              $("body").append(`<img src="${skin}" width="256" style="background-color:cyan;border-radius:200px;">`)
+             window.totalSkins += 1
+             $("#skins").text(`Total skins: ${window.totalSkins}`)
+           }
+             tester.src = skin.url
            })
+
+
           }
       })
 
