@@ -32,7 +32,7 @@ $("body").append("<h1>Loading skins...")
            $("body").empty()
            $("body").append(`<span id="skins>Total skins: 0</span><br>`)
 
-           if(location.search === '?random'){
+           if(location.search.includes('?random')){
              function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -62,7 +62,7 @@ shuffle(data)
              window.totalSkins += 1
              $("#skins").text(`Total skins: ${window.totalSkins}`)
            }
-             tester.src = skin.url
+             tester.src = skin
            })
 
 
