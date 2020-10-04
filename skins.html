@@ -9,6 +9,8 @@ html{
 }
 </style>
 
+<body><h1>Loading skins...</h1></body>
+
 <script>
 
   var password = "Your mom is skinny";
@@ -23,14 +25,12 @@ window.totalSkins = 0
   }
 }
 
-$("body").append("<h1>Loading skins...")
-
   $.ajax({
          url: "https://zimek.glitch.me/api/skins?auth=Xzimek32sdju70r;.,;ppdp;l;le30sdKKs;l9883Ddssxx..LDlS;",
          type: "GET",
          success: function(data) {
            $("body").empty()
-           $("body").append(`<span id="skins>Total skins: 0</span><br>`)
+           $("body").append(`<span id="skins">Total skins: 0</span><br>`)
 
            if(location.search.includes('?random')){
              function shuffle(array) {
