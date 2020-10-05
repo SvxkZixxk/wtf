@@ -1,0 +1,79 @@
+<title>Skins Gallery</title>
+
+<script src="../src/jquery.js"></script>
+<script src="../src/sweet-alert.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+<style>
+html{
+  background-color:#010108;
+  color:#d1d1d1;
+  font-family: 'Open Sans', sans-serif;
+}
+</style>
+
+<body><h1>Loading skins...</h1></body>
+
+<script>
+
+  var password = ";-XzimekSKIngallERy782x]]";
+
+window.totalSkins = 0
+
+window.failedskins = []
+
+  if(localStorage.password !== password){
+  var x = prompt("Enter in the password "," ");
+  localStorage.password = x
+  if (x !== password) {
+    window.location = "https://zimek.wtf/404.html";
+  }
+}
+
+function loadSkins(random){
+
+
+
+  $.ajax({
+         url: "https://zimek.glitch.me/api/skins?auth=Xzimek32sdju70r;.,;ppdp;l;le30sdKKs;l9883Ddssxx..LDlS;",
+         type: "GET",
+         success: function(data) {
+           $("body").empty()
+           $("body").append(`<div style="position:fixed; top:0;left:0"><span id="skins"></span><button style="margin-left:20px;" onclick="loadSkins(true)">Randomizer</button></div><br>`)
+
+           if(random){
+             function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+shuffle(data)
+           }
+
+           data.forEach(function(skin){
+             var tester=new Image();
+             tester.onload = function(){
+               if($(`img[src="${skin}"]`).length < 1){
+             $("body").append(`<img src="${skin}" width="256" style="background-color:cyan;border-radius:200px;">`)
+             window.totalSkins += 1
+             $("#skins").text(`Total skins: ${window.totalSkins}`)
+            }
+           }
+           tester.onerror = function(){
+             window.failedskins.push(skin)
+           }
+             tester.src = skin
+           })
+
+
+          }})}
+
+    loadSkins(location.search.includes('random'))
+
+</script>
