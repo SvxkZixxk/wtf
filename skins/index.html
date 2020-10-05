@@ -135,7 +135,7 @@ shuffle(data)
              var tester=new Image();
              tester.onload = function(){
                if($(`img[src='${skin}']`).length == 0){
-             $("body").append(`<img src="${skin}" width="256" class="rainbowBg" style="padding:3px;border-radius:200px;cursor:pointer;", onclick="openSkin('${skin}')">`)
+             $("body").append(`<img src="${skin}" width="256" class="" style="background-color:#34c78c;margin:3px;border-radius:200px;cursor:pointer;", onclick="openSkin('${skin}')">`)
              window.totalSkins += 1
              $("#skins").text(`Total skins: ${window.totalSkins}`)
             }
@@ -184,7 +184,8 @@ shuffle(data)
           element: "img",
           attributes: {
             src: skin,
-            width:'400px'
+            class:'rainbowBg',
+            width:400
           },
         },
       }).then((val)=>{
