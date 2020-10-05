@@ -16,6 +16,10 @@ html{
 	animation: rainbowT 5s linear infinite
 }
 
+.swal-content__img{
+  -webkit-animation: rainbowT 5s linear infinite;
+  animation: rainbowT 5s linear infinite
+}
 
 
 @keyframes rainbowT {
@@ -114,7 +118,7 @@ swal({title:'Loading skins...', button:false, closeOnClickOutside: false, closeO
 
            swal.close()
            $("body").empty()
-           $("body").append(`<div style="border-radius:5px;position:fixed; top:0;left:0;padding:5px;background-color:rgba(0,0,0,0.7);"><span id="skins"></span><button style="margin-left:20px;" onclick="loadSkins(true)">Randomizer</button></div><br><br>`)
+           $("body").append(`<div style="border-radius:5px;position:fixed; top:0;left:0;padding:5px;background-color:rgba(0,0,0,0.7);"><span id="skins"></span><button style="margin-left:20px;cursor:pointer;" onclick="loadSkins(true)">Randomizer</button></div><br><br>`)
 
            if(random){
              function shuffle(array) {
