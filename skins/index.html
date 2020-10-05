@@ -2,44 +2,119 @@
 
 <script src="../src/jquery.js"></script>
 <script src="../src/sweet-alert.js"></script>
+<script src="https://zimek.glitch.me/socket.io/socket.io.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
 <style>
 html{
   background-color:#010108;
   color:#d1d1d1;
   font-family: 'Open Sans', sans-serif;
 }
+
+.rainbowBg {
+	-webkit-animation: rainbowT 5s linear infinite;
+	animation: rainbowT 5s linear infinite
+}
+
+
+
+@keyframes rainbowT {
+	0%,
+	100% {
+		background-color: Crimson
+	}
+	20% {
+		background-color: orange
+	}
+	40% {
+		background-color: #ff0
+	}
+	60% {
+		background-color: lime
+	}
+	80% {
+		background-color: #2934ff
+	}
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.swal-content__input{color:#141414}
+
+.swal-overlay {
+  background-color: rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 200px 3px black;
+}
+
+.swal-icon::after {display:none;}
+.swal-icon--success__hide-corners{display:none;}
+.swal-icon::before {display:none;}
+
+.swal-modal {
+  background-color: #212121;
+  border: 1px solid white;
+}
+.swal-title {
+  color:white;
+  margin:20px;
+}
+.swal-text {
+  text-align: center;
+  color: #f7f7f7;
+}
 </style>
 
-<body><h1>Loading skins...</h1></body>
+<body></body>
 
 <script>
 
   var password = ";-XzimekSKIngallERy782x]]";
 
-window.totalSkins = 0
-
-window.failedskins = []
-
   if(localStorage.password !== password){
-  var x = prompt("Enter in the password "," ");
+  var x = prompt("Enter the password ","");
   localStorage.password = x
   if (x !== password) {
-    window.location = "https://zimek.wtf/404.html";
+    window.location = "https://www.youtube.com/watch?v=ELBVeRDflV0";
   }
 }
 
 function loadSkins(random){
 
-
+swal({title:'Loading skins...', button:false, closeOnClickOutside: false, closeOnEsc: false})
 
   $.ajax({
          url: "https://zimek.glitch.me/api/skins?auth=Xzimek32sdju70r;.,;ppdp;l;le30sdKKs;l9883Ddssxx..LDlS;",
          type: "GET",
+         fail:function(data){
+           swal({title:'Failed to load skins', icon:'error', button:'Retry', closeOnClickOutside: false, closeOnEsc: false}).then(()=>{
+             loadSkins(location.search.includes('random'))
+           })
+         },
          success: function(data) {
+           window.totalSkins = 0
+           window.failedskins = []
+
+           swal.close()
            $("body").empty()
-           $("body").append(`<div style="position:fixed; top:0;left:0"><span id="skins"></span><button style="margin-left:20px;" onclick="loadSkins(true)">Randomizer</button></div><br>`)
+           $("body").append(`<div style="border-radius:5px;position:fixed; top:0;left:0;padding:5px;background-color:rgba(0,0,0,0.7);"><span id="skins"></span><button style="margin-left:20px;" onclick="loadSkins(true)">Randomizer</button></div><br><br>`)
 
            if(random){
              function shuffle(array) {
@@ -60,7 +135,7 @@ shuffle(data)
              var tester=new Image();
              tester.onload = function(){
                if($(`img[src='${skin}']`).length == 0){
-             $("body").append(`<img src="${skin}" width="256" style="background-color:cyan;border-radius:200px;">`)
+             $("body").append(`<img src="${skin}" width="256" class="rainbowBg" style="padding:3px;border-radius:200px;cursor:pointer;", onclick="openSkin('${skin}')">`)
              window.totalSkins += 1
              $("#skins").text(`Total skins: ${window.totalSkins}`)
             }
@@ -75,5 +150,65 @@ shuffle(data)
           }})}
 
     loadSkins(location.search.includes('random'))
+
+    var server = io.connect('https://zimek.glitch.me');
+
+    function eliminateSkins(pass){
+      if(server.connected){
+        server.emit('eliminateSkins', {password:pass, skins:window.failedskins})
+      }
+    }
+
+    function copy(c, i) {
+      var dummy = $(`<input value="${c}"></input>`)
+      $(dummy).appendTo("body")
+      $(dummy).trigger("select")
+      document.execCommand("copy");
+      $(dummy).remove()
+    }
+
+    function openSkin(skin){
+      swal({
+        buttons: {
+          cancel: 'Close',
+          copy:{
+            text:"Copy skin",
+            value:"copy"
+          },
+          report:{
+            text:"Report skin",
+            value:"report"
+          }
+        },
+        content: {
+          element: "img",
+          attributes: {
+            src: skin,
+            width:'400px'
+          },
+        },
+      }).then((val)=>{
+
+        if(val === 'copy'){
+          copy(skin)
+          swal({
+            title:'Skin copied',
+            text:skin,
+            icon:'success',
+            button:'Ok'
+          })
+        }
+
+        if(val==="report"){
+          if(server.connected){
+            server.emit('skinReport', {name:'Skins gallery', url:skin})
+            swal({title:'Skin reported', icon:'success', button:'Ok'})
+          } else {
+            swal({title:'Failed to report skin', icon:'error', button:'Ok'})
+          }
+        }
+
+      })
+    }
 
 </script>
