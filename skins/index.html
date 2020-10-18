@@ -116,6 +116,7 @@ swal({title:'Loading skins...', button:false, closeOnClickOutside: false, closeO
          success: function(data) {
            window.totalSkins = 0
            window.failedskins = []
+	   window.skins = []
 
            swal.close()
            $("body").empty()
@@ -142,6 +143,7 @@ shuffle(data)
                if($(`img[src='${skin}']`).length == 0){
              $("body").append(`<img src="${skin}" width="256" class="" style="background-color:#34c78c;margin:3px;border-radius:200px;cursor:pointer;", onclick="openSkin('${skin}')">`)
              window.totalSkins += 1
+	     window.skins.push(skin)
              $("#skins").text(`Total skins: ${window.totalSkins}`)
             }
            }
