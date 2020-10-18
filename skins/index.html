@@ -117,6 +117,7 @@ swal({title:'Loading skins...', button:false, closeOnClickOutside: false, closeO
            window.totalSkins = 0
            window.failedskins = []
 	   window.skins = []
+	   window.skinsCodes = []
 
            swal.close()
            $("body").empty()
@@ -144,6 +145,7 @@ shuffle(data)
              $("body").append(`<img src="${skin}" width="256" class="" style="background-color:#34c78c;margin:3px;border-radius:200px;cursor:pointer;", onclick="openSkin('${skin}')">`)
              window.totalSkins += 1
 	     window.skins.push(skin)
+	     window.skinsCodes.push(skin.replace('https://skins.vanis.io/s/',''))
              $("#skins").text(`Total skins: ${window.totalSkins}`)
             }
            }
